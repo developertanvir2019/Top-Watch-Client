@@ -20,7 +20,7 @@ const Header = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li className='font-bold text-info px-2'><Link to='/'>Home</Link></li>
-                    {/* <li className='font-bold text-info px-2'><Link to='/blogs'>Blogs</Link></li> */}
+                    <li className='font-bold text-info px-2'><Link to='/blogs'>Blogs</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
