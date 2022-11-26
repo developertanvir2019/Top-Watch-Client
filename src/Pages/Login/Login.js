@@ -5,7 +5,7 @@ import { AuthContext } from '../../Others/AuthProvider';
 
 const Login = () => {
     const [email, setUserEmail] = useState('');
-    const { signin, signInWithGoogle } = useContext(AuthContext);
+    const { signin, signInWithGoogle, loading, setLoading } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -18,19 +18,40 @@ const Login = () => {
 
         signin(email, password)
             .then(res => {
+                setLoading(false)
                 toast.success('Log in successFully..')
                 navigate(from, { replace: true })
             })
-            .catch(err => toast.error(err.message))
+            .catch(err => {
+                setLoading(false)
+                toast.error(err.message)
+            })
 
     }
     const handleGoogle = () => {
         signInWithGoogle()
             .then(result => {
-                navigate(from, { replace: true });
+                const role = 'buyer';
+                saveUser(result?.user?.displayName, result?.user?.email, result?.user?.photoURL, role);
                 toast.success('login successfully ..')
+                navigate(from, { replace: true });
             })
             .catch(err => toast.error(err.message))
+    }
+
+    const saveUser = (userName, email, image, role) => {
+        const user = { userName, email, image, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
     }
 
     return (
@@ -75,7 +96,12 @@ const Login = () => {
                     </div>
 
                     <div>
-                        <button type='submit' className=' btn btn-secondary'>Login</button>
+
+                        {
+                            loading ?
+                                <button className=' btn btn-secondary loading'>Loading</button> :
+                                <button type='submit' className=' btn btn-secondary'>Login</button>
+                        }
                     </div>
                 </form>
                 <div className='flex items-center pt-4 space-x-1'>

@@ -1,10 +1,13 @@
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Others/AuthProvider'
 
 const Signup = () => {
-    const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
+    const { createUser, updateUserProfile, signInWithGoogle, loading, setLoading } = useContext(AuthContext)
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
@@ -12,6 +15,7 @@ const Signup = () => {
         const image = form.image.files[0];
         const password = form.password.value;
         const email = form.email.value;
+        const role = form.role.value;
 
         //for upload image in imgBb and save firebase user...
         const formData = new FormData()
@@ -28,17 +32,45 @@ const Signup = () => {
                 createUser(email, password)
                     .then(result => {
                         updateUserProfile(name, data.data.display_url)
-                            .then()
+                            .then(() => {
+                                saveUser(name, email, result?.user?.photoURL, role);
+                                setLoading(false)
+                                toast.success('login successfully ..')
+                                navigate(from, { replace: true });
+                            })
                         console.log(result)
                     })
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setLoading(false)
+                toast.error(err.message)
+            })
 
     }
     const handleGoogle = () => {
         signInWithGoogle()
-            .then(result => console.log(result.user))
+            .then(result => {
+                const role = 'buyer';
+                saveUser(result?.user?.displayName, result?.user?.email, result?.user?.photoURL, role);
+                toast.success('login successfully ..')
+                navigate(from, { replace: true });
+                // console.log(result.user)
+            })
             .catch(err => toast.error(err.message))
+    }
+    const saveUser = (userName, email, image, role) => {
+        const user = { userName, email, image, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
     }
     return (
         <div className='flex justify-center items-center pt-8'>
@@ -79,6 +111,11 @@ const Signup = () => {
                                 className='file-input file-input-bordered file-input-secondary w-full max-w-xs'
                             />
                         </div>
+                        <select name='role' className="select select-bordered w-full max-w-xs">
+                            <option disabled selected>What will Your Role?</option>
+                            <option>seller</option>
+                            <option>buyer</option>
+                        </select>
                         <div>
                             <label htmlFor='email' className='block mb-2 text-sm'>
                                 Email address
@@ -111,7 +148,11 @@ const Signup = () => {
                     </div>
                     <div className='space-y-2'>
                         <div>
-                            <button className='btn btn-secondary'>SignUp</button>
+                            {
+                                loading ?
+                                    <button className='btn btn-secondary loading'>Loading</button> :
+                                    <button className='btn btn-secondary'>SignUp</button>
+                            }
                         </div>
                     </div>
                 </form>
