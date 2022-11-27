@@ -1,13 +1,23 @@
+import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../Others/AuthProvider";
 
 const CategoryProduct = () => {
+    const [modalopen, setmodalopen] = useState(null)
     const data = useLoaderData()
-    console.log(data);
+    const { user } = useContext(AuthContext);
+
+    const handleBooking = e => {
+        e.preventDefault();
+        toast.success(`product is booked successfully`)
+        setmodalopen(1)
+    }
     return (
         <div className="lg:mx-36">
             <h2 className="my-8 text-4xl font-semibold">Hare is our all <span className="text-secondary">{data[0]?.category}</span> Product</h2>
 
-            <div className="grid grid-cols-2 gap-12">
+            <div className="grid lg:grid-cols-2 gap-12 my-12 sm:grid-cols-1">
                 {
                     data.map(d =>
                         <div key={d._id} className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -25,15 +35,45 @@ const CategoryProduct = () => {
                                     </div>
                                 </div>
                                 <h2 className="text-secondary text-xl">Seller - {d?.user?.displayName}✔️</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Buy Now</button>
+                                <div className="card-actions">
+                                    <a href="#my-modal-2" className="btn btn-secondary">Book Now</a>
                                 </div>
                             </div>
+                            {/* modal */}
+                            {!modalopen &&
+                                <div className="modal" id="my-modal-2">
+                                    <div className="modal-box">
+                                        <h3 className="font-bold text-lg text-info py-4">Fill the form for Booking</h3>
+
+                                        <form onSubmit={handleBooking} className='grid grid-cols-1 gap-4'>
+                                            <input readOnly defaultValue={user?.displayName ? user?.displayName : 'Default Name'} name='name' type="text" placeholder="Your name" className="input input-bordered w-full " />
+                                            <input disabled defaultValue={user?.email} name='email' type="text" placeholder="Email address" className="input input-bordered w-full " />
+                                            <input disabled defaultValue={d?.name} name='email' type="text" placeholder="Email address" className="input input-bordered w-full " />
+                                            <input disabled defaultValue={`$${d?.currentPrice} Tk`} name='email' type="text" placeholder="Email address" className="input input-bordered w-full " />
+                                            <input required name='phone' type="text" placeholder="Your Phone number" className="input input-bordered w-full " /> <br />
+                                            <input required type="text" placeholder="Your Location" className="input input-bordered w-full" />
+
+                                            <input className='btn btn-secondary w-full ' type="submit" value='Submit' />
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+
+
+                            {/* modal */}
                         </div>
                     )
                 }
             </div>
+
+
+
+
+
         </div>
     );
 };
