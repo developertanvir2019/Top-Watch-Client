@@ -1,9 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import useToken from '../../Others/AllHooks/UseToken'
 import { AuthContext } from '../../Others/AuthProvider'
 
 const Signup = () => {
+    const [userEmail, setUserEmail] = useState('')
+    const [token] = useToken(userEmail)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -69,6 +72,7 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setUserEmail(email)
                 console.log(data);
             })
     }

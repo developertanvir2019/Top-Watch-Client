@@ -2,9 +2,11 @@ import React, { useContext, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Others/AuthProvider';
+import useToken from '../../Others/AllHooks/UseToken';
 
 const Login = () => {
     const [email, setUserEmail] = useState('');
+    const [token] = useToken('')
     const { signin, signInWithGoogle, loading, setLoading } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();

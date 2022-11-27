@@ -34,11 +34,14 @@ const Header = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li className='font-bold text-info px-2'><Link to='/'>Home</Link></li>
                     <li className='font-bold text-info px-2'><Link to='/blogs'>Blogs</Link></li>
-                    <li className='font-bold text-info px-2'><Link to='/dashboard'>Dashboard</Link></li>
                     <li className="">
                         {
                             user?.uid ?
-                                <Link onClick={() => logout()} to='/login' className="btn btn-secondary">LogOut</Link>
+                                <>
+                                    <li className='font-bold text-info px-2'><Link to='/dashboard'>Dashboard</Link></li>
+
+                                    <li className="font-bold text-info px-2"> <Link onClick={() => logout()} >LogOut</Link></li>
+                                </>
                                 :
                                 <Link to='/login' className="btn btn-secondary">Login</Link>
                         }
