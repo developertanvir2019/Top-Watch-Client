@@ -13,7 +13,7 @@ const Categories = () => {
                         <h2 className="card-title mx-auto text-3xl font-semibold text-info">Fastrack</h2>
                         <p>Expensive and top budget watch.</p>
                         <div className="card-actions justify-center">
-                            <Link className="btn btn-secondary">Buy Now</Link>
+                            <Link to='/fastrack' className="btn btn-secondary">Buy Now</Link>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@ const Categories = () => {
                         <h2 className="card-title mx-auto text-3xl font-semibold text-info">Casio</h2>
                         <p>Reasonable budget watch.</p>
                         <div className="card-actions justify-center">
-                            <Link className="btn btn-secondary">Buy Now</Link>
+                            <Link to='/casio' className="btn btn-secondary">Buy Now</Link>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@ const Categories = () => {
                         <h2 className="card-title mx-auto text-3xl font-semibold text-info">Titan</h2>
                         <p>Expensive and Middle budget watch.</p>
                         <div className="card-actions justify-center">
-                            <Link className="btn btn-secondary">Buy Now</Link>
+                            <Link to='/titan' className="btn btn-secondary">Buy Now</Link>
                         </div>
                     </div>
                 </div>

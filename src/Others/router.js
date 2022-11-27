@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blogs from "../Pages/Blog/Blogs";
+import CategoryProduct from "../Pages/CategoryProduct/CategoryProduct";
 import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyer from "../Pages/Dashboard/AllUser/AllBuyer";
 import AllSeller from "../Pages/Dashboard/AllUser/AllSeller";
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/blogs',
-                element: <PrivateRouter><Blogs></Blogs></PrivateRouter>
+                element: <Blogs></Blogs>
             },
             {
                 path: '/login',
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+            {
+                path: '/:category',
+                loader: ({ params }) => fetch(`http://localhost:5000/${params.category}`),
+                element: <CategoryProduct></CategoryProduct>
             },
         ]
     },
