@@ -6,7 +6,7 @@ const AllUser = () => {
     const [user, setUSer] = useState([])
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/allUsers')
+        fetch('https://server-wine-three.vercel.app/allUsers')
             .then(res => res.json())
             .then(data => {
                 setUSer(data)
@@ -17,7 +17,7 @@ const AllUser = () => {
 
     const handleMakeAdmin = id => {
         console.log(id);
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://server-wine-three.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

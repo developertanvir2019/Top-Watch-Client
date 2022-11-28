@@ -4,7 +4,7 @@ const AllBuyer = () => {
     const [buyer, setBuyer] = useState([])
     console.log(buyer);
     useEffect(() => {
-        fetch('http://localhost:5000/all/Buyers')
+        fetch('https://server-wine-three.vercel.app/all/Buyers')
             .then(res => res.json())
             .then(data => setBuyer(data))
     }, [])

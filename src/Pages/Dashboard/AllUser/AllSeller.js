@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const AllSeller = () => {
     const [seller, setSeller] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/all/seller')
+        fetch('https://server-wine-three.vercel.app/all/seller')
             .then(res => res.json())
             .then(data => setSeller(data))
     }, [])

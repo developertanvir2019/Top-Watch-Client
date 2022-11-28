@@ -43,7 +43,7 @@ const Login = () => {
 
     const saveUser = (userName, email, image, role) => {
         const user = { userName, email, image, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://server-wine-three.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

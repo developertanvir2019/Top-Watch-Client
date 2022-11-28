@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/:category',
-                loader: ({ params }) => fetch(`http://localhost:5000/${params.category}`),
+                loader: ({ params }) => fetch(`https://server-wine-three.vercel.app/${params.category}`),
                 element: <CategoryProduct></CategoryProduct>
             },
         ]

@@ -4,8 +4,9 @@ import { AuthContext } from '../../../Others/AuthProvider';
 const MyOrders = () => {
     const [product, setProduct] = useState([])
     const { user } = useContext(AuthContext)
+    console.log(user);
     useEffect(() => {
-        fetch(`http://localhost:5000/my/product?email=${user.email}`)
+        fetch(`http://localhost:5000/bookings/all?email=${user.email}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [user])
@@ -17,10 +18,10 @@ const MyOrders = () => {
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th>Sale Status</th>
+                            <th>Name</th>
                             <th>Price</th>
                             <th>ProductName</th>
-                            <th>delete</th>
+                            <th>pay</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,9 +29,9 @@ const MyOrders = () => {
                             product.map(p =>
                                 <tr key={p._id}>
                                     <td>{p.name}</td>
-                                    <td>{p.currentPrice}</td>
-                                    <th>Available</th>
-                                    <td><button className='btn btn-xs btn-secondary'>Delete</button></td>
+                                    <td>{p.price}</td>
+                                    <th>{p.product}</th>
+                                    <td><button className='btn btn-xs btn-secondary'>Pay</button></td>
                                 </tr>
                             )
                         }

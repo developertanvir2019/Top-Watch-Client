@@ -10,8 +10,36 @@ const CategoryProduct = () => {
 
     const handleBooking = e => {
         e.preventDefault();
-        toast.success(`product is booked successfully`)
-        setmodalopen(1)
+        const form = e.target;
+        const booking = {
+            name: form.name.value,
+            email: form.email.value,
+            product: form.product.value,
+            price: form.price.value,
+            phone: form.phone.value,
+            location: form.location.value,
+        }
+        fetch('http://localhost:5000/bookings/all', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    toast.success('Product Booked Successfully')
+                    form.reset()
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
+
+
+        setmodalopen(!modalopen)
     }
     return (
         <div className="lg:mx-36">
@@ -48,10 +76,10 @@ const CategoryProduct = () => {
                                         <form onSubmit={handleBooking} className='grid grid-cols-1 gap-4'>
                                             <input readOnly defaultValue={user?.displayName ? user?.displayName : 'Default Name'} name='name' type="text" placeholder="Your name" className="input input-bordered w-full " />
                                             <input disabled defaultValue={user?.email} name='email' type="text" placeholder="Email address" className="input input-bordered w-full " />
-                                            <input disabled defaultValue={d?.name} name='email' type="text" placeholder="Email address" className="input input-bordered w-full " />
-                                            <input disabled defaultValue={`$${d?.currentPrice} Tk`} name='email' type="text" placeholder="Email address" className="input input-bordered w-full " />
+                                            <input disabled defaultValue={d?.name} name='product' type="text" placeholder="Email address" className="input input-bordered w-full " />
+                                            <input disabled defaultValue={`$${d?.currentPrice} Tk`} name='price' type="text" placeholder="Email address" className="input input-bordered w-full " />
                                             <input required name='phone' type="text" placeholder="Your Phone number" className="input input-bordered w-full " /> <br />
-                                            <input required type="text" placeholder="Your Location" className="input input-bordered w-full" />
+                                            <input required name="location" type="text" placeholder="Your Location" className="input input-bordered w-full" />
 
                                             <input className='btn btn-secondary w-full ' type="submit" value='Submit' />
                                         </form>

@@ -39,7 +39,7 @@ const AddProduct = () => {
                 }
 
                 //send mongodb
-                fetch('http://localhost:5000/products', {
+                fetch('https://server-wine-three.vercel.app/products', {
                     method: 'POST',
                     headers: {
                         "content-type": "application/json"
