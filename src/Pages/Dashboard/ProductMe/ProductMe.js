@@ -14,7 +14,7 @@ const ProductMe = () => {
 
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/myProduct/${id}`, {
+        fetch(`https://server-wine-three.vercel.app/myProduct/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -32,9 +32,9 @@ const ProductMe = () => {
                 <table className="table w-full">
                     <thead>
                         <tr>
-                            <th>Sale Status</th>
+                            <th>Product Name</th>
                             <th>Price</th>
-                            <th>ProductName</th>
+                            <th>Sale Status</th>
                             <th>delete</th>
                         </tr>
                     </thead>

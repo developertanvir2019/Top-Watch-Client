@@ -19,7 +19,7 @@ const CategoryProduct = () => {
             phone: form.phone.value,
             location: form.location.value,
         }
-        fetch('http://localhost:5000/bookings/all', {
+        fetch('https://server-wine-three.vercel.app/bookings/all', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

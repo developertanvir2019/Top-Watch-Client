@@ -6,7 +6,7 @@ const MyOrders = () => {
     const { user } = useContext(AuthContext)
     console.log(user);
     useEffect(() => {
-        fetch(`http://localhost:5000/bookings/all?email=${user.email}`)
+        fetch(`https://server-wine-three.vercel.app/bookings/all?email=${user.email}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [user])
