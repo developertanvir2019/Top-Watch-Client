@@ -26,6 +26,7 @@ const AddProduct = () => {
             .then(data => {
                 const product = {
                     name: form.name.value,
+                    email: user?.email,
                     oldPrice: form.oldPrice.value,
                     currentPrice: form.currentPrice.value,
                     photo: data?.data?.display_url,
