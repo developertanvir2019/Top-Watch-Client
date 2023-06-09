@@ -3,11 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Others/AuthProvider';
 import useToken from '../../Others/AllHooks/UseToken';
-
 const Login = () => {
     const [email, setUserEmail] = useState('');
-    const [token] = useToken('')
-    const { signin, signInWithGoogle, loading, setLoading } = useContext(AuthContext);
+    const { signin, signInWithGoogle, loading, setLoading, user } = useContext(AuthContext);
+    const [token] = useToken(email)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -101,8 +100,8 @@ const Login = () => {
 
                         {
                             loading ?
-                                <button className=' btn btn-secondary loading'>Loading</button> :
-                                <button type='submit' className=' btn btn-secondary'>Login</button>
+                                <button className=' btn bg-gradient-to-r from-blue-400 to-pink-500 hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 loading w-full'>Loading</button> :
+                                <button type='submit' className=' btn bg-gradient-to-r from-blue-400 to-pink-500 hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 w-full'>Login</button>
                         }
                     </div>
                 </form>

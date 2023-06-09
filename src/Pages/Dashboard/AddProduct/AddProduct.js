@@ -121,7 +121,7 @@ const AddProduct = () => {
                                 />
                             </div>
                         </div>
-                        <button type='submit' className='btn btn-secondary'>Add Product</button>
+                        <button type='submit' className='btn bg-gradient-to-r from-blue-400 to-pink-500 hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600'>Add Product</button>
                     </form>
                 </div>
             </div>

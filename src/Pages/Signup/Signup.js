@@ -154,8 +154,8 @@ const Signup = () => {
                         <div>
                             {
                                 loading ?
-                                    <button className='btn btn-secondary loading'>Loading</button> :
-                                    <button className='btn btn-secondary'>SignUp</button>
+                                    <button className='btn bg-gradient-to-r from-blue-400 to-pink-500 hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 w-full loading'>Loading</button> :
+                                    <button className='btn bg-gradient-to-r from-blue-400 to-pink-500 hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 w-full'>SignUp</button>
                             }
                         </div>
                     </div>

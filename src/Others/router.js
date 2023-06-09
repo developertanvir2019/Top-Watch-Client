@@ -16,6 +16,7 @@ import Signup from "../Pages/Signup/Signup";
 import BuyerRoute from "./AllRoutes/BuyerRoute";
 import SellerRouter from "./AllRoutes/SellerRouter";
 import PrivateRouter from "./PrivateRoute";
+import CartProduct from "../Components/CartProduct/CartProduct";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
+                path: '/cartproducts',
+                element: <CartProduct></CartProduct>
+            },
+            {
                 path: '/blogs',
                 element: <Blogs></Blogs>
             },
@@ -43,8 +48,7 @@ export const router = createBrowserRouter([
                 element: <Signup></Signup>
             },
             {
-                path: '/:category',
-                loader: ({ params }) => fetch(`https://server-wine-three.vercel.app/${params.category}`),
+                path: 'product/:category',
                 element: <CategoryProduct></CategoryProduct>
             },
         ]
@@ -75,7 +79,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myOrders',
-                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+                element: <MyOrders></MyOrders>
             },
         ]
     }

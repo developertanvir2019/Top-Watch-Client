@@ -4,8 +4,9 @@ import Spinner from '../../Shared/Spinner';
 
 const AllUser = () => {
     const [user, setUSer] = useState([])
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
+        setLoading(true)
         fetch('https://server-wine-three.vercel.app/allUsers')
             .then(res => res.json())
             .then(data => {
@@ -30,50 +31,51 @@ const AllUser = () => {
                         // refetch()
                     }
                     else {
-                        toast.error(data.message)
+                        toast.error('you are not authorized for make admin...Because you are not a admin')
                     }
                 }))
     }
     return (
         <div>
-            {
-                loading ?
-                    <div className='flex justify-center items-center'><Spinner></Spinner></div> :
-                    <h2 className='text-center text-3xl font-bold text-secondary mb-5'>ALL Users</h2>
-            }
-
+            <h2 className='text-center text-3xl font-bold text-secondary mb-5'>ALL Users</h2>
 
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>add admin</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            user.map(us =>
-                                <tr key={us._id}>
-                                    <td>
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={us?.image} alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{us?.email}</td>
-                                    <td>{us?.role}</td>
-                                    <td>
-                                        <button onClick={() => handleMakeAdmin(us._id)} className="btn btn-secondary btn-xs">add Admin</button>
-                                    </td>
+                {
+                    loading ?
+                        <div className='flex justify-center items-center'><Spinner></Spinner></div> :
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Remove</th>
                                 </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+                            </thead>
+
+                            <tbody>
+                                {
+                                    user.map(us =>
+                                        <tr key={us._id}>
+                                            <td>
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle w-12 h-12">
+                                                        <img src={us?.image} alt="Avatar Tailwind CSS Component" />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{us?.email}</td>
+                                            <td>{us?.role}</td>
+                                            <td>
+                                                <button onClick={() => handleMakeAdmin(us._id)} className="btn bg-gradient-to-r from-blue-400 to-pink-500 hover:bg-gradient-to-r hover:from-green-600 hover:to-blue-600 btn-xs">add Admin</button>
+                                            </td>
+
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                }
             </div>
         </div>
     );

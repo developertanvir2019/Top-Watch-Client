@@ -3,11 +3,13 @@ import { Link, Outlet } from "react-router-dom";
 import useBuyer from "../../../Others/AllHooks/useBuyer";
 import useSeller from "../../../Others/AllHooks/useSeller";
 import { AuthContext } from "../../../Others/AuthProvider";
+import Footer from "../../Shared/Footer/Footer";
 import Header from "../../Shared/Header/Header";
 
 const DashBoard = () => {
     const { user } = useContext(AuthContext);
-    //   const [isAdmin] = useAdmin(user?.email);
+    // const [isAdmin, isLoading] = useAdmin(user?.email);
+
     const [isSeller] = useSeller(user?.email);
     const [isBuyer] = useBuyer(user?.email);
     return (
@@ -47,16 +49,16 @@ const DashBoard = () => {
                                 </li>
                             </>
                         )}
-                        {isBuyer && (
-                            <>
-                                <li>
-                                    <Link to="/dashboard/myOrders">My Orders</Link>
-                                </li>
-                            </>
-                        )}
+                        <>
+                            <li>
+                                <Link to="/dashboard/myOrders">My Orders</Link>
+                            </li>
+                        </>
+
                     </ul>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };
