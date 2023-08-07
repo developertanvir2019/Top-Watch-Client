@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Spinner from '../../Pages/Shared/Spinner';
 import { AuthContext } from '../../Others/AuthProvider';
 import { toast } from 'react-hot-toast';
+import './AllProduct.css'
 
 const AllProducts = () => {
     const [allProducts, setAlProducts] = useState([]);
@@ -31,7 +32,7 @@ const AllProducts = () => {
                 {
                     loading ? <Spinner /> :
                         allProducts?.map(d =>
-                            <div key={d._id} className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+                            <div key={d._id} className="w-72 box-shadow-custom bg-white shadow-md rounded-xl duration-500 hover:scale-105">
                                 <div>
                                     <img src={d?.photo} alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
                                     <div className="px-4 py-3 w-72">
