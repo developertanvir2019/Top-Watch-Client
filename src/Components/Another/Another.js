@@ -2,7 +2,7 @@ import React from 'react';
 
 const Another = () => {
     return (
-        <div className='lg:flex mt-8 mb-6'>
+        <div className='lg:flex mt-8 mb-6 lg:mx-16'>
             <div data-aos="zoom-in-up" className='lg:w-1/2'>
                 <img src="https://watchbox-sfcc.imgix.net/Third+Mod.jpg?auto=format,compress&cs=srgb&usm=5&usmrad=5&vib=5&h=450" alt="" />
             </div>

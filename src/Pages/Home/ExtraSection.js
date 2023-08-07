@@ -10,7 +10,7 @@ const ExtraSection = () => {
                 <div className="w-full relative flex items-center justify-center">
                     {/* <img src="https://i.ibb.co/bbS3J9C/pexels-max-vakhtbovych-6301182-1.png" alt="dining" className="w-full h-full absolute z-0 hidden sm:block xl:hidden" /> */}
                     {/* <img src="https://i.ibb.co/JKkzGDs/pexels-max-vakhtbovych-6301182-1.png" alt="dining" className="w-full h-full absolute z-0" /> */}
-                    <div className="contact-bg bg-opacity-30 bg-gray-200 md:my-16 lg:py-16 py-10 w-full md:mx-24 md:px-12 px-4 flex flex-col items-center justify-center relative z-40">
+                    <div className="contact-bg bg-opacity-30 bg-gray-200 md:my-16 lg:py-16 py-10 w-full md:mx-12 md:px-12 px-4 flex flex-col items-center justify-center relative z-40">
                         <h1 className="text-4xl font-semibold leading-9  text-center">Don’t miss out!</h1>
                         <p className="text-base leading-normal text-center font-medium text-gray-500 mt-6">
                             Subscribe to your newsletter to stay in the loop. Our newsletter is sent once in <br />
@@ -27,7 +27,7 @@ const ExtraSection = () => {
             <iframe
                 title='location map'
                 src="https://maps.google.com/maps?width=650&amp;height=400&amp;hl=en&amp;q=savar,Dhaka , Bangladesh&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                height={450} style={{ border: 0 }} allowFullScreen="" loading="lazy" className='w-full'
+                height={400} style={{ border: 0 }} allowFullScreen="" loading="eager" className='w-full'
                 referrerPolicy="no-referrer-when-downgrade"></iframe>
         </>
     );

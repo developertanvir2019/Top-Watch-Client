@@ -27,7 +27,7 @@ const AllProducts = () => {
                 </div>
             </div>
             {/* jfaijfaelofjioaifjaiofjoaifjeioooooooooow */}
-            <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20  lg:gap-x-24 md:gap-x-24 sm:gap-x-8 mt-10 mb-5">
+            <section className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20  lg:gap-x-24 md:gap-x-12 sm:gap-x-8 mt-10 mb-5">
                 {
                     loading ? <Spinner /> :
                         allProducts?.map(d =>
